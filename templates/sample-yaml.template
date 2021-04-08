@@ -1,6 +1,6 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Lambda  Cluster Id generator
+Description: Sample Stack  
 Parameters:
   Param1:
     Description: Param1
@@ -58,7 +58,7 @@ Resources:
             - "       return token"
       Handler: index.handler
       Runtime: python3.7
-      Timeout: '5'
+      Timeout: 5
       Role:
         Fn::GetAtt:
         - LambdaExecutionRole
@@ -87,12 +87,11 @@ Resources:
           - - Ref: AWS::StackId
             - RequestId
         LogicalResourceId: GenIDLogicalResourceId
-    DependsOn:
-    - GenID
 Outputs:
   ClusterID:
     Value:
       Fn::GetAtt:
       - GetID
       - Data
-
+  Param1Output:
+    Value: !Ref Param1
